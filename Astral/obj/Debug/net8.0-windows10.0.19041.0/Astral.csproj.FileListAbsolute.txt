@@ -104,3 +104,4 @@ F:\Astral\Astral\obj\Debug\net8.0-windows10.0.19041.0\pri.resfiles.intermediate
 F:\Astral\Astral\obj\Debug\net8.0-windows10.0.19041.0\qualifiers.txt
 F:\Astral\Astral\obj\Debug\net8.0-windows10.0.19041.0\qualifiers.txt.intermediate
 F:\Astral\Astral\obj\Debug\net8.0-windows10.0.19041.0\MultipleQualifiersPerDimensionFound.txt
+F:\Astral\Astral\obj\Debug\net8.0-windows10.0.19041.0\Astral.sourcelink.json

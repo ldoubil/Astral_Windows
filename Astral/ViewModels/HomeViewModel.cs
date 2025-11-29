@@ -1,4 +1,5 @@
 using Astral.Constants;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Astral.ViewModels;
 

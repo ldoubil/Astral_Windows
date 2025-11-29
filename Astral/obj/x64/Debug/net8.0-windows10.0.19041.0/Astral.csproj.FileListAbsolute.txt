@@ -104,3 +104,4 @@ F:\Astral\Astral\obj\x64\Debug\net8.0-windows10.0.19041.0\Views\HomePage.xaml
 F:\Astral\Astral\obj\x64\Debug\net8.0-windows10.0.19041.0\Views\ServersPage.xbf
 F:\Astral\Astral\obj\x64\Debug\net8.0-windows10.0.19041.0\Views\SettingsPage.xbf
 F:\Astral\Astral\obj\x64\Debug\net8.0-windows10.0.19041.0\Views\HomePage.xbf
+F:\Astral\Astral\obj\x64\Debug\net8.0-windows10.0.19041.0\Astral.sourcelink.json

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Window
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:ConnectionId='1'
     x:Class="Astral.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -14,22 +14,22 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <Grid x:Name="RootGrid" Loaded="RootGrid_Loaded">
+    <Grid x:ConnectionId='2' x:Name="RootGrid"                         >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TitleBar
+        <TitleBar x:ConnectionId='3'
             x:Name="titleBar"
             Title="Astral"
-            BackRequested="TitleBar_BackRequested"
+                                                  
             IsBackButtonVisible="False"
             IsPaneToggleButtonVisible="True"
-            PaneToggleRequested="TitleBar_PaneToggleRequested">
+                                                              >
             
             <TitleBar.LeftHeader>
-                <TextBlock
+                <TextBlock x:ConnectionId='6'
                     x:Name="TitleTextBlock"
                     Text="Astral"
                     VerticalAlignment="Center"
@@ -39,19 +39,21 @@
             </TitleBar.LeftHeader>
         </TitleBar>
 
-        <NavigationView
+        <NavigationView x:ConnectionId='4'
             x:Name="RootNavigationView"
             Grid.Row="1"
             PaneDisplayMode="Left"
             IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False"
             IsPaneToggleButtonVisible="False"
-            ItemInvoked="OnNavigationViewItemInvoked"
-            SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
+                                                     
+                                                                       
+            PaneTitle="Astral"
             OpenPaneLength="150">
             
 
-            <Frame x:Name="ContentFrame" Navigated="OnContentFrameNavigated" />
+            <Frame x:ConnectionId='5' x:Name="ContentFrame"                                     />
         </NavigationView>
     </Grid>
 </Window>
+

@@ -15,31 +15,31 @@ public sealed class NavigationService : INavigationService
         new NavigationItemConfig
         {
             Content = "主页",
-            IconGlyph = Icons.Home,
-            Tag = NavigationTags.Home,
+            IconGlyph = AppConstants.Icons.Home,
+            Tag = AppConstants.NavigationTags.Home,
             IsFooterItem = false
         },
         new NavigationItemConfig
         {
             Content = "服务器",
-            IconGlyph = Icons.Server,
-            Tag = NavigationTags.Servers,
+            IconGlyph = AppConstants.Icons.Server,
+            Tag = AppConstants.NavigationTags.Servers,
             IsFooterItem = false
         },
         new NavigationItemConfig
         {
             Content = "设置",
-            IconGlyph = Icons.Settings,
-            Tag = NavigationTags.Settings,
+            IconGlyph = AppConstants.Icons.Settings,
+            Tag = AppConstants.NavigationTags.Settings,
             IsFooterItem = true
         }
     };
 
     private static readonly FrozenDictionary<string, Type> TagToPageTypeMap = new Dictionary<string, Type>
     {
-        { NavigationTags.Home, typeof(HomePage) },
-        { NavigationTags.Servers, typeof(ServersPage) },
-        { NavigationTags.Settings, typeof(SettingsPage) }
+        { AppConstants.NavigationTags.Home, typeof(HomePage) },
+        { AppConstants.NavigationTags.Servers, typeof(ServersPage) },
+        { AppConstants.NavigationTags.Settings, typeof(SettingsPage) }
     }.ToFrozenDictionary();
 
     /// <inheritdoc/>
