@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Astral")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5707ae2a1872ccdc9419f0c15d0db20b9ff67f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Astral")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Astral")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

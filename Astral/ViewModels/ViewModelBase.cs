@@ -7,8 +7,6 @@ namespace Astral.ViewModels;
 /// </summary>
 public abstract partial class ViewModelBase : ObservableObject
 {
-    private bool _isLoading;
-
     /// <summary>
     /// 是否正在加载
     /// </summary>

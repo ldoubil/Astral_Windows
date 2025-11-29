@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml.Controls;
-using Astral.Views;
+using Astral.Models;
+using Astral.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Astral.ViewModels;
@@ -8,8 +9,10 @@ namespace Astral.ViewModels;
 /// <summary>
 /// 主窗口的ViewModel
 /// </summary>
-public partial class MainViewModel : ObservableObject
+public partial class MainViewModel : ViewModelBase
 {
+    private readonly INavigationService _navigationService;
+
     /// <summary>
     /// 当前选中的导航项
     /// </summary>
@@ -32,63 +35,49 @@ public partial class MainViewModel : ObservableObject
     /// </summary>
     public ObservableCollection<NavigationViewItem> FooterMenuItems { get; }
 
-    /// <summary>
-    /// 标签到页面类型的映射
-    /// </summary>
-    private readonly Dictionary<string, Type> _tagToPageTypeMap;
-
-    public MainViewModel()
+    public MainViewModel(INavigationService? navigationService = null)
     {
-        // 初始化导航项映射
-        _tagToPageTypeMap = new Dictionary<string, Type>
-        {
-            { "Home", typeof(HomePage) },
-            { "Servers", typeof(ServersPage) },
-            { "Settings", typeof(SettingsPage) }
-        };
+        _navigationService = navigationService ?? new NavigationService();
 
-        // 初始化菜单项
-        MenuItems = new ObservableCollection<NavigationViewItem>
-        {
-            new NavigationViewItem
-            {
-                Content = "主页",
-                Icon = new FontIcon { Glyph = "\uE10F" }, // Home icon
-                Tag = "Home"
-            },
-            new NavigationViewItem
-            {
-                Content = "服务器",
-                Icon = new FontIcon { Glyph = "\uE7ED" }, // Server icon
-                Tag = "Servers"
-            }
-        };
+        // 从服务获取导航配置并创建导航项
+        var configs = _navigationService.GetNavigationConfigs();
+        MenuItems = new ObservableCollection<NavigationViewItem>();
+        FooterMenuItems = new ObservableCollection<NavigationViewItem>();
 
-        // 初始化页脚菜单项
-        FooterMenuItems = new ObservableCollection<NavigationViewItem>
+        foreach (var config in configs)
         {
-            new NavigationViewItem
+            var navigationItem = CreateNavigationViewItem(config);
+            
+            if (config.IsFooterItem)
             {
-                Content = "设置",
-                Icon = new FontIcon { Glyph = "\uE713" }, // Settings icon
-                Tag = "Settings"
+                FooterMenuItems.Add(navigationItem);
             }
-        };
+            else
+            {
+                MenuItems.Add(navigationItem);
+            }
+        }
 
         // 设置默认选中项和页面
-        SelectedItem = MenuItems[0];
-        CurrentPageType = typeof(HomePage);
+        if (MenuItems.Count > 0)
+        {
+            SelectedItem = MenuItems[0];
+        }
+        
+        CurrentPageType = _navigationService.GetDefaultPageType();
     }
 
     /// <summary>
-    /// 根据标签获取页面类型
+    /// 根据导航配置创建 NavigationViewItem
     /// </summary>
-    public Type? GetPageTypeByTag(string? tag)
+    private static NavigationViewItem CreateNavigationViewItem(NavigationItemConfig config)
     {
-        if (string.IsNullOrEmpty(tag))
-            return null;
-
-        return _tagToPageTypeMap.TryGetValue(tag, out var pageType) ? pageType : null;
+        return new NavigationViewItem
+        {
+            Content = config.Content,
+            Icon = new FontIcon { Glyph = config.IconGlyph },
+            Tag = config.Tag
+        };
     }
 
     /// <summary>
@@ -102,7 +91,7 @@ public partial class MainViewModel : ObservableObject
         if (item?.Tag is not string tag)
             return false;
 
-        var targetPageType = GetPageTypeByTag(tag);
+        var targetPageType = _navigationService.GetPageTypeByTag(tag);
         if (targetPageType == null)
             return false;
 
@@ -120,4 +109,3 @@ public partial class MainViewModel : ObservableObject
         return true;
     }
 }
-
