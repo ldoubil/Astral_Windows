@@ -1,0 +1,54 @@
+<Page
+    x:Class="Astral.Views.ServersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewmodels="using:Astral.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.DataContext>
+        <viewmodels:ServersViewModel />
+    </Page.DataContext>
+
+    <ScrollViewer>
+        <StackPanel Padding="24" Spacing="16">
+            <TextBlock
+                Text="服务器列表"
+                FontSize="32"
+                FontWeight="Bold" />
+            
+            <ListView ItemsSource="{Binding Servers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Grid.Column="0">
+                                <TextBlock
+                                    Text="{Binding Name}"
+                                    FontSize="16"
+                                    FontWeight="SemiBold" />
+                                <TextBlock
+                                    Text="{Binding Address}"
+                                    FontSize="14"
+                                    Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </StackPanel>
+                            
+                            <TextBlock
+                                Grid.Column="1"
+                                Text="{Binding Status}"
+                                FontSize="14"
+                                VerticalAlignment="Center"
+                                Margin="12,0,0,0" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+

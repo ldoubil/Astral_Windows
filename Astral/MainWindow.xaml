@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Astral.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Astral"
+    xmlns:viewmodels="using:Astral.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Astral">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid x:Name="RootGrid" Loaded="RootGrid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TitleBar
+            x:Name="titleBar"
+            Title="Astral"
+            BackRequested="TitleBar_BackRequested"
+            IsBackButtonVisible="False"
+            IsPaneToggleButtonVisible="True"
+            PaneToggleRequested="TitleBar_PaneToggleRequested">
+            
+            <TitleBar.LeftHeader>
+                <TextBlock
+                    x:Name="TitleTextBlock"
+                    Text="Astral"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource ApplicationForegroundThemeBrush}" />
+            </TitleBar.LeftHeader>
+        </TitleBar>
+
+        <NavigationView
+            x:Name="RootNavigationView"
+            Grid.Row="1"
+            PaneDisplayMode="Left"
+            IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
+            IsPaneToggleButtonVisible="False"
+            ItemInvoked="OnNavigationViewItemInvoked"
+            SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
+            PaneTitle="Astral"
+            OpenPaneLength="150">
+            
+
+            <Frame x:Name="ContentFrame" Navigated="OnContentFrameNavigated" />
+        </NavigationView>
+    </Grid>
+</Window>

@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="Astral.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewmodels="using:Astral.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.DataContext>
+        <viewmodels:SettingsViewModel />
+    </Page.DataContext>
+
+    <ScrollViewer>
+        <StackPanel Padding="24" Spacing="24">
+            <TextBlock
+                Text="设置"
+                FontSize="32"
+                FontWeight="Bold" />
+            
+            <StackPanel Spacing="16">
+                <ToggleSwitch
+                    Header="深色模式"
+                    IsOn="{Binding DarkMode, Mode=TwoWay}" />
+                
+                <ComboBox
+                    Header="语言"
+                    SelectedItem="{Binding Language, Mode=TwoWay}">
+                    <ComboBox.Items>
+                        <x:String>简体中文</x:String>
+                        <x:String>English</x:String>
+                    </ComboBox.Items>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+
+
